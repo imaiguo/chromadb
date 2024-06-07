@@ -1,5 +1,5 @@
 
-# ChromaDB
+# ChromaDB 0.5.0
 
 ## 安装虚拟环境
 ```bash

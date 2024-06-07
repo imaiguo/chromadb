@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  db:
+    image: chromadb/chroma:0.5.1.dev153
+    container_name: chromadb.0.5.1
+    restart: always
+    command: "--workers 1 --host 0.0.0.0 --port 8000 --proxy-headers --log-config /chroma/chroma/log_config.yml --timeout-keep-alive 30"
+    environment:
+      - ANONYMIZED_TELEMETRY=False
+      - ALLOW_RESET=True
+      - IS_PERSISTENT=True
+      - PERSIST_DIRECTORY=/chroma/chroma
+      - CHROMA_SERVER_AUTHN_CREDENTIALS_FILE=/chroma/chroma/server.htpasswd
+      - CHROMA_SERVER_AUTHN_PROVIDER=chromadb.auth.basic_authn.BasicAuthenticationServerProvider
+    ports:
+      - "6000:8000"
+    volumes:
+      - /opt/Service/chromadb/data:/chroma/chroma

@@ -33,8 +33,6 @@ openai_ef = embedding_functions.OpenAIEmbeddingFunction(
             )
 
 collection = client.get_or_create_collection(name="integrations", embedding_function=openai_ef)
-# collection = client.create_collection(name="integrations", embedding_function=openai_ef)
-# collection = client.get_collection(name="name", embedding_function=openai_ef)
 
 collection.query(Document=[], n_results=1)
 

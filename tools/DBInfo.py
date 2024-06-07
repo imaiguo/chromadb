@@ -39,13 +39,16 @@ class ChromaDB(object):
         version = self.dbClient.get_version()
         logger.debug(f"version ->{version}")
 
-    def getCollection(self):
+    def ShowCollectionList(self):
         result = self.dbClient.list_collections()
         logger.debug(f"collections list->{result}")
         return result
 
-info = ChromaDB()
+def main():
+    info = ChromaDB()
+    collections = info.ShowCollectionList()
+    for co in collections:
+        print(f"collections -> Name:{co.name}\t count:{co.count()}")
 
-collections = info.getCollection()
-for co in collections:
-    print(f"collections -> Name:{co.name}\t count:{co.count()}")
+if __name__=="__main__":
+    main()
